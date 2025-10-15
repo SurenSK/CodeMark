@@ -13,6 +13,6 @@ with gr.Blocks() as app:
             btn_detect = gr.Button("detect")
     
     btn_watermark.click(lambda x, y: encode(x, int(y)), [input_func, payload], output_func)
-    btn_detect.click(lambda x: str(decode(x)), output_func, detected_payload)
+    btn_detect.click(lambda x: (lambda p, m: f"{p} ({m})")(*decode(x, getMax=True)), output_func, detected_payload)
 
 app.launch()

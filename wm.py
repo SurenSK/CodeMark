@@ -65,6 +65,7 @@ class WatermarkTransformer(ast.NodeTransformer):
             return transform.transform(node)
         return super().visit(node)
 
+
 def encode(code, payload):
     tree = ast.parse(code)
     sites = get_ordered_sites(tree)
@@ -80,7 +81,7 @@ def encode(code, payload):
     new_tree = ast.fix_missing_locations(transformer.visit(tree))
     return ast.unparse(new_tree)
 
-def decode(code):
+def decode(code, getMax=False):
     tree = ast.parse(code)
     sites = get_ordered_sites(tree)
     payload = 0
@@ -88,4 +89,6 @@ def decode(code):
         node, transform = site['node'], site['transform']
         bit = transform.get_bit(node)
         payload |= (bit << i)
+    if getMax:
+        return payload, (1 << len(sites)) - 1
     return payload
