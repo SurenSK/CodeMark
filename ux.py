@@ -4,11 +4,11 @@ from wm import encode, decode
 with gr.Blocks() as app:
     with gr.Row():
         with gr.Column(scale=1):
-            input_func = gr.Textbox(placeholder="input function", lines=5, max_lines=5, show_label=False, container=False)
+            input_func = gr.Textbox(placeholder="input function", lines=10, max_lines=10, show_label=False, container=False)
             payload = gr.Textbox(placeholder="payload", lines=1, max_lines=1, show_label=False, container=False)
             btn_watermark = gr.Button("watermark")
         with gr.Column(scale=1):
-            output_func = gr.Textbox(placeholder="watermarked function", lines=5, max_lines=5, show_label=False, container=False)
+            output_func = gr.Textbox(placeholder="watermarked function", lines=10, max_lines=10, show_label=False, container=False)
             detected_payload = gr.Textbox(placeholder="detected payload", lines=1, max_lines=1, show_label=False, container=False)
             btn_detect = gr.Button("detect")
     
